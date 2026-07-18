@@ -316,6 +316,8 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            background: white;
+            border: 1px solid var(--detail);
         }
 
         .counter-number {
@@ -671,6 +673,10 @@
             gap: 10px;
             padding: 10px 16px;
             border-radius: 50px;
+            background: var(--white-glass);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: var(--shadow-md);
         }
 
         .music-btn {
@@ -689,90 +695,9 @@
             transition: var(--transition);
         }
 
-        .music-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 0;
-            overflow: hidden;
-            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .music-player:hover .music-controls { width: 140px; }
-        .volume-slider { width: 80px; accent-color: var(--primary); cursor: pointer; }
-
-        /* ==========================================
-           FRASES ALEATORIAS
-           ========================================== */
-        .phrases-section {
-            text-align: center;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #phrase-text {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.8rem;
-            max-width: 800px;
-            line-height: 1.6;
-            color: var(--primary);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        #phrase-text.fade-out { opacity: 0; transform: translateY(-10px); }
-
-        /* ==========================================
-           SECCIÓN FINAL: CARTA DE AMOR
-           ========================================== */
-        .love-letter-section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 5rem 3rem;
-        }
-
-        .letter-content {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            line-height: 2;
-            text-align: justify;
-            color: var(--text);
-            white-space: pre-line;
-        }
-
-        .letter-signature {
-            margin-top: 3rem;
-            text-align: right;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-style: italic;
-        }
-
-        /* Elements dynamically generated styling */
-        .sparkle, .heart-click, .petal { position: absolute; pointer-events: none; z-index: 9999; }
-
-        footer {
-            text-align: center;
-            padding: 3rem;
-            background: linear-gradient(to top, rgba(255, 194, 209, 0.3), transparent);
-            font-size: 0.95rem;
-            font-weight: 300;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-card h1 { font-size: 3rem; }
-            .hero-card p { font-size: 1.1rem; }
-            .main-message p { font-size: 1.5rem; }
-            .counter-box { min-width: 90px; padding: 1.2rem 0.5rem; }
-            .counter-number { font-size: 2.2rem; }
-            .timeline-container::before { left: 20px; }
-            .timeline-event { width: 100%; padding-left: 3.5rem; padding-right: 0; text-align: left !important; }
-            .timeline-event:nth-child(even) { left: 0; }
-            .timeline-event::after { left: 10px !important; right: auto !important; }
+        .music-btn:hover {
+            transform: scale(1.05);
+            background: #ff3356;
         }
     </style>
 </head>
@@ -780,425 +705,192 @@
 
     <div class="bg-animated"></div>
 
-    <!-- REPRODUCTOR DE MÚSICA -->
-    <div class="music-player glass-panel">
-        <audio id="love-audio" src="musica.mp3" loop></audio>
-        <button class="music-btn" id="play-btn">▶</button>
-        <div class="music-controls">
-            <span style="font-size:0.8rem; font-weight:600;">Vol</span>
-            <input type="range" class="volume-slider" id="volume-control" min="0" max="1" step="0.1" value="0.7">
-        </div>
-    </div>
-
-    <!-- PANTALLA DE BIENVENIDA -->
+    <!-- PANTALLA DE BIENVENIDA (SOBRE INTERACTIVO) -->
     <div id="welcome-screen">
         <div class="welcome-container">
-            <div class="envelope-wrapper" id="envelope-interactive">
+            <div class="envelope-wrapper" id="envelope-wrapper">
                 <div class="envelope">
+                    <div class="envelope-body"></div>
                     <div class="letter">
-                        <p>Para:</p>
-                        <p style="font-weight: 700; color: var(--primary);">Mishel</p>
+                        <p>Para la niña</p>
+                        <p>más bonita</p>
+                        <p>❤️</p>
                     </div>
                 </div>
-                <div class="envelope-body"></div>
             </div>
-            <button class="btn-premium" id="btn-open-envelope">Abrir mi carta ❤️</button>
+            <button class="btn-premium" id="btn-open-site">Abrir con Amor</button>
         </div>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div id="main-content" style="display: none;">
+    <!-- HERO SECTION -->
+    <header>
+        <div class="container hero-card glass-panel reveal">
+            <h1>Mishelita</h1>
+            <p>Eres la página más bonita que el destino escribió en mi vida.</p>
+            <a href="#contador" class="btn-premium">Ver Nuestro Tiempo</a>
+        </div>
+    </header>
 
-        <!-- HERO -->
-        <header>
-            <div class="hero-card glass-panel reveal">
-                <h1>Hola, Mishel ❤️</h1>
-                <!-- Aquí integramos tu descripción -->
-                <p>"Te amo mucho. Este pequeño rincón existe para recordarte lo increíble que eres."</p>
-                <button class="btn-premium" onclick="scrollToSection('mensajito')">Comenzar</button>
-            </div>
-        </header>
+    <!-- MENSAJE PRINCIPAL -->
+    <section class="container reveal">
+        <div class="main-message glass-panel">
+            <p>"Desde que entraste en mi mundo, cada segundo se volvió una obra de arte. Gracias por hacerme el más feliz."</p>
+        </div>
+    </section>
 
-        <!-- MENSAJE PRINCIPAL -->
-        <section id="mensajito" class="container">
-            <div class="main-message glass-panel reveal">
-                <p>"Dentro de este mundo la persona más valiosa eres tú, Mishel. <br><br> Quiero que cada vez que abras esta página recuerdes que eres suficiente, hermosa, inteligente, fuerte y profundamente amada. <br><br> Nunca olvides cuánto vales para mí."</p>
-            </div>
-        </section>
-
-        <!-- CONTADOR -->
-        <section class="container counter-section reveal">
-            <h2>Llevamos juntos</h2>
+    <!-- CONTADOR DE TIEMPO -->
+    <section class="container reveal" id="contador">
+        <div class="counter-section glass-panel" style="padding: 4rem 2rem;">
+            <h2>El tiempo que llevamos amándonos</h2>
             <div class="counter-container">
-                <div class="counter-box glass-panel"><span class="counter-number" id="months">0</span><span class="counter-label">Meses</span></div>
-                <div class="counter-box glass-panel"><span class="counter-number" id="days">0</span><span class="counter-label">Días</span></div>
-                <div class="counter-box glass-panel"><span class="counter-number" id="hours">0</span><span class="counter-label">Horas</span></div>
-                <div class="counter-box glass-panel"><span class="counter-number" id="minutes">0</span><span class="counter-label">Minutos</span></div>
-                <div class="counter-box glass-panel"><span class="counter-number" id="seconds">0</span><span class="counter-label">Segundos</span></div>
-            </div>
-        </section>
-
-        <!-- GALERÍA POLAROID -->
-        <section class="container reveal">
-            <h2 style="text-align:center; font-size: 2.5rem; color:var(--primary); margin-bottom: 3rem;">Nuestros Momentos</h2>
-            <div class="gallery-grid">
-                <!-- Foto 1 -->
-                <div class="polaroid" onclick="openLightbox('foto1.jpg')">
-                    <div class="polaroid-img-wrapper">
-                        <img src="foto1.jpg" alt="Momento 1" onerror="this.src='https://picsum.photos/400/400?romantic=1'">
-                    </div>
-                    <div class="polaroid-caption">Cada risa contigo es mi favorita.</div>
+                <div class="counter-box">
+                    <span class="counter-number" id="days">00</span>
+                    <span class="counter-label">Días</span>
                 </div>
-                <!-- Foto 2 -->
-                <div class="polaroid" onclick="openLightbox('foto2.jpg')">
-                    <div class="polaroid-img-wrapper">
-                        <img src="foto2.jpg" alt="Momento 2" onerror="this.src='https://picsum.photos/400/400?romantic=2'">
-                    </div>
-                    <div class="polaroid-caption">Bajo el mismo cielo estrellado.</div>
+                <div class="counter-box">
+                    <span class="counter-number" id="hours">00</span>
+                    <span class="counter-label">Horas</span>
                 </div>
-                <!-- Foto 3 -->
-                <div class="polaroid" onclick="openLightbox('foto3.jpg')">
-                    <div class="polaroid-img-wrapper">
-                        <img src="foto3.jpg" alt="Momento 3" onerror="this.src='https://picsum.photos/400/400?romantic=3'">
-                    </div>
-                    <div class="polaroid-caption">Construyendo nuestro infinito.</div>
+                <div class="counter-box">
+                    <span class="counter-number" id="minutes">00</span>
+                    <span class="counter-label">Minutos</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="seconds">00</span>
+                    <span class="counter-label">Segundos</span>
                 </div>
             </div>
-        </section>
-
-        <!-- LIGHTBOX -->
-        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-            <span class="lightbox-close">&times;</span>
-            <img class="lightbox-content" id="lightbox-img" alt="Ampliación">
         </div>
+    </section>
 
-        <!-- RAZONES POR LAS QUE TE AMO -->
-        <section class="container reveal">
-            <h2 class="reasons-title">Razones por las que te amo</h2>
-            <div class="reasons-grid" id="reasons-container"></div>
-        </section>
-
-        <!-- FRASE ALEATORIA -->
-        <section class="container phrases-section reveal">
-            <div class="glass-panel" style="padding:3rem 2rem; width:100%; max-width:850px;">
-                <p id="phrase-text">"Para el mundo puedes ser una persona, pero para mí eres el mundo entero."</p>
-            </div>
-        </section>
-
-        <!-- LÍNEA DEL TIEMPO -->
-        <section class="container reveal">
-            <h2 style="text-align: center; font-size: 2.5rem; color:var(--primary); margin-bottom: 3rem;">Nuestra Historia</h2>
-            <div class="timeline-container" id="timeline-box"></div>
-        </section>
-
-        <!-- DIARIO DE MISHEL -->
-        <section class="container notes-section reveal">
-            <h2>El diario de Mishel ✍️</h2>
-            <p style="text-align:center; margin-bottom: 2rem;">Un espacio para que escribas lo que sientas, tus metas o algún pensamiento bonito. Se guardará aquí para siempre.</p>
-            <div class="note-creator glass-panel">
-                <textarea id="note-input" placeholder="Escribe un pensamiento aquí..."></textarea>
-                <div style="display:flex; justify-content:flex-end;">
-                    <button class="btn-premium" id="btn-save-note">Guardar nota ✨</button>
+    <!-- GALERÍA DE IMÁGENES -->
+    <section class="container reveal">
+        <h2 style="text-align: center; font-size: 2.5rem; color: var(--primary); margin-bottom: 3rem;">Momentos Inolvidables</h2>
+        <div class="gallery-grid">
+            <div class="polaroid" onclick="openLightbox('foto1.jpg')">
+                <div class="polaroid-img-wrapper">
+                    <img src="foto1.jpg" alt="Momento 1">
                 </div>
+                <div class="polaroid-caption">Tu sonrisa favorita</div>
             </div>
-            <div class="notes-grid" id="notes-container"></div>
-        </section>
-
-        <!-- SECCIÓN FINAL -->
-        <section class="container reveal">
-            <div class="love-letter-section glass-panel">
-                <h2 style="font-size:2.8rem; color:var(--primary); text-align:center; margin-bottom:2rem;">Para el amor de mi vida</h2>
-                <div class="letter-content">
-                    Mishel,
-
-                    Desde que entraste a mi vida todo tiene un color más brillante, más cálido, más bonito. Tu risa se ha convertido en mi melodía favorita y tu bienestar en mi mayor inspiración. 
-
-                    Esta página fue diseñada pensando exclusivamente en ti, para asegurarme de que incluso en tus días más difíciles, tengas un refugio al cual volver y que te recuerde lo hermosa, inteligente y sumamente capaz que eres. 
-
-                    Gracias por ser mi paz, mi compañera y mi aventura favorita. Prometo cuidarte, escucharte y recordarte cada día el valor incalculable de tu corazón. Eres mi rincón seguro en el universo.
+            <div class="polaroid" onclick="openLightbox('foto2.jpg')">
+                <div class="polaroid-img-wrapper">
+                    <img src="foto2.jpg" alt="Momento 2">
                 </div>
-                <div class="letter-signature">
-                    Con todo mi amor,<br>
-                    <strong>Aldair ❤️</strong>
-                </div>
+                <div class="polaroid-caption">Nuestros días juntos</div>
             </div>
-        </section>
+            <div class="polaroid" onclick="openLightbox('foto3.jpg')">
+                <div class="polaroid-img-wrapper">
+                    <img src="foto3.jpg" alt="Momento 3">
+                </div>
+                <div class="polaroid-caption">Haces todo más especial</div>
+            </div>
+        </div>
+    </section>
 
-        <!-- FOOTER -->
-        <footer>
-            <p>Hecho exclusivamente para la mujer más bonita del universo.</p>
-            <p style="font-size: 0.8rem; margin-top:0.5rem; opacity:0.6;">© 2026 Aldair. Diseñado con amor absoluto.</p>
-        </footer>
-
+    <!-- REPRODUCTOR DE MÚSICA FLOTANTE -->
+    <div class="music-player">
+        <span>Nuestra Música 🎵</span>
+        <button class="music-btn" id="music-toggle" onclick="toggleMusic()">▶️</button>
+        <!-- Reemplaza "musica.mp3" con la ruta de tu archivo de música real -->
+        <audio id="bg-audio" src="musica.mp3" loop></audio>
     </div>
 
-    <!-- LOGICA JAVASCRIPT -->
+    <!-- LIGHTBOX PARA LAS FOTOS -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Vista ampliada">
+    </div>
+
+    <!-- SCRIPTS INTERACTIVOS -->
     <script>
-        // CONFIGURACIÓN DE FECHA: (Año, Mes [0-11], Día, Hora, Minutos)
-        const ANNIVERSARY_DATE = new Date(2025, 8, 15, 14, 0, 0); 
-
-        const REASONS = [
-            { icon: "✨", title: "Tu Sonrisa", text: "Tiene el poder mágico de iluminar y arreglar completamente el peor de mis días." },
-            { icon: "🧠", title: "Tu Inteligencia", text: "Me encanta escucharte hablar sobre lo que sabes, eres asombrosamente capaz." },
-            { icon: "❤️", title: "Tu Empatía", text: "La forma tan dulce e infinitamente tierna con la que cuidas y te preocupas por los demás." },
-            { icon: "💫", title: "Tu Autenticidad", text: "No hay nadie como tú en este planeta. Eres genuina y real en cada cosa que haces." },
-            { icon: "🌸", title: "Tu Ternura", text: "La forma en la que me miras y tus pequeños gestos que me hacen derretir de amor." },
-            { icon: "🛡️", title: "Tu Fortaleza", text: "Admiro enormemente tu capacidad de levantarte y brillar con más fuerza ante cualquier reto." },
-            { icon: "🎨", title: "Tu Creatividad", text: "Haces que lo ordinario se vuelva mágico con tu toque único y artístico." },
-            { icon: "🗣️", title: "Nuestras Charlas", text: "Podríamos hablar de todo y de nada durante horas enteras sin cansarnos jamás." },
-            { icon: "🫂", title: "Tus Abrazos", text: "Son mi hogar. El lugar más seguro y pacífico en el que puedo estar." },
-            { icon: "🍀", title: "Tu Apoyo", text: "Creer en mí incondicionalmente, incluso cuando yo mismo dudo de mis capacidades." },
-            { icon: "🧸", title: "Tu Dulzura", text: "Incluso en el más mínimo detalle demuestras la nobleza y pureza de tu corazón." },
-            { icon: "🌌", title: "Nuestro Futuro", text: "Porque haces que el mañana parezca hermoso y emocionante de solo pensar en vivirlo contigo." }
-        ];
-
-        const TIMELINE_EVENTS = [
-            { date: "Primer Mensaje", title: "El inicio de todo", text: "Un saludo inesperado que se convertiría en la mejor conversación de mi vida." },
-            { date: "Primera Salida", title: "Nuestra primera cita", text: "Los nervios a flor de piel y la confirmación de que quería conocerte para siempre." },
-            { date: "Primer Abrazo", title: "El refugio perfecto", text: "El momento exacto donde supe lo que se sentía estar verdaderamente en casa." },
-            { date: "Primer Beso", title: "Magia en el aire", text: "Un instante en el que el tiempo se detuvo y el universo entero guardó silencio." },
-            { date: "Primer \"Te amo\"", title: "Nuestras verdades", text: "Pronunciar esas palabras sabiendo que se quedaban cortas para lo que sentía." },
-            { date: "Primer Aniversario", title: "365 días amándote", text: "El primer gran capítulo de una historia eterna construida paso a paso." }
-        ];
-
-        const ROMANTIC_PHRASES = [
-            "Eres mi sol en días nublados.", "Contigo, el amor es un viaje sin final.", "Te amo más de lo que las palabras pueden expresar.",
-            "Eres mi sueño hecho realidad, Mishel.", "Cada segundo a tu lado vale una eternidad.", "Mi lugar favorito en el mundo es dentro de tus abrazos.",
-            "Eres la coincidencia más hermosa de mi vida.", "A tu lado, todo es infinitamente mejor.", "Gracias por existir y por hacerme tan feliz.",
-            "Eres mi pensamiento favorito al despertar.", "Tu amor es mi mayor inspiración.", "Elegirte a ti siempre será mi mejor decisión.",
-            "En tus ojos encontré el universo que siempre busqué.", "Eres la dueña absoluta de mis sonrisas.", "Cada día que pasa me enamoro un poquito más de ti.",
-            "Me haces querer ser una mejor versión de mí mismo.", "Nuestra historia es mi libro favorito.", "Tu risa es la melodía que alegra mi alma.",
-            "Prometo amarte hoy, mañana y el resto de mis días.", "Eres suficiente, perfecta y hermosa tal como eres.",
-            "La vida es bella, pero contigo es una obra de arte.", "Eres mi rincón de paz en este mundo tan caótico.", "Amo la forma en la que me haces sentir.",
-            "Tú y yo hacemos el equipo más hermoso de todos.", "Eres mi hogar, mi refugio, mi todo.", "No hay nada más hermoso que caminar de tu mano.",
-            "Eres mi mayor tesoro, bonita.", "Amarte es natural, fácil e inevitable.", "Eres la musa de cada uno de mis pensamientos.",
-            "Eres mi felicidad de todos los días.", "Nadie brilla con tanta intensidad como tú.", "Eres magia pura en mi vida.",
-            "Te quiero para un millón de primaveras más.", "Tu presencia hace que todo valga la pena.", "Eres la mejor parte de mis días.",
-            "No te imaginas lo increíblemente valiosa que eres para mí.", "Mi amor por ti crece de manera exponencial cada día.",
-            "Eres el tesoro más delicado y hermoso que poseo.", "Tus besos me transportan a otra dimensión.", "Gracias por darme la mano en los días difíciles.",
-            "Eres mi luna, mi estrella y mi cielo entero.", "Mi amor por ti es eterno e incondicional.", "Simplemente gracias por ser tú, mi bonita Mishel."
-        ];
-
+        // 1. MANEJO DEL SOBRE DE BIENVENIDA
+        const envelopeWrapper = document.getElementById('envelope-wrapper');
+        const btnOpenSite = document.getElementById('btn-open-site');
         const welcomeScreen = document.getElementById('welcome-screen');
-        const mainContent = document.getElementById('main-content');
-        const envelope = document.getElementById('envelope-interactive');
-        const btnOpen = document.getElementById('btn-open-envelope');
-        const audio = document.getElementById('love-audio');
-        const playBtn = document.getElementById('play-btn');
-        const volumeControl = document.getElementById('volume-control');
+        const audio = document.getElementById('bg-audio');
+        const musicBtn = document.getElementById('music-toggle');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initReasons();
-            initTimeline();
-            initNotes();
-            startPhraseCarousel();
-            initScrollAnimation();
-            envelope.addEventListener('click', openLetterFlow);
-            btnOpen.addEventListener('click', openLetterFlow);
-        });
-
-        function openLetterFlow() {
-            if (envelope.classList.contains('open')) return;
-            envelope.classList.add('open');
-            playOpenSound();
-            
+        function abrirSobre() {
+            envelopeWrapper.classList.add('open');
             setTimeout(() => {
                 welcomeScreen.style.opacity = '0';
                 welcomeScreen.style.visibility = 'hidden';
-                mainContent.style.display = 'block';
-                setTimeout(() => {
-                    window.scrollTo(0, 0);
-                    checkReveal();
-                    audio.play().then(() => { playBtn.textContent = '⏸'; }).catch(() => {});
-                    startInteractiveClicks();
-                    startPetalRain();
-                }, 100);
-            }, 1800);
+                // Intentar reproducir música automáticamente al abrir
+                audio.play().then(() => {
+                    musicBtn.innerText = '⏸️';
+                }).catch(err => console.log("Reproducción automática prevenida por el navegador. Reclama interacción humana."));
+            }, 1200);
         }
 
-        function playOpenSound() {
-            try {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.connect(gain); gain.connect(ctx.destination);
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(440, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.5);
-                gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6);
-                osc.start(); osc.stop(ctx.currentTime + 0.6);
-            } catch (e) {}
+        envelopeWrapper.addEventListener('click', abrirSobre);
+        btnOpenSite.addEventListener('click', abrirSobre);
+
+        // 2. CONFIGURACIÓN DEL CONTADOR DE ANIVERSARIO (4 de Enero de 2026, 1:30 PM)
+        // Año: 2026, Mes: 0 (Enero en JS), Día: 4, Hora: 13 (1 PM), Minutos: 30, Segundos: 0
+        const fechaInicio = new Date(2026, 0, 4, 13, 30, 0);
+
+        function actualizarContador() {
+            const ahora = new Date();
+            const diferencia = ahora - fechaInicio;
+
+            const msPorSegundo = 1000;
+            const msPorMinuto = msPorSegundo * 60;
+            const msPorHora = msPorMinuto * 60;
+            const msPorDia = msPorHora * 24;
+
+            const dias = Math.floor(diferencia / msPorDia);
+            const horas = Math.floor((diferencia % msPorDia) / msPorHora);
+            const minutos = Math.floor((diferencia % msPorHora) / msPorMinuto);
+            const segundos = Math.floor((diferencia % msPorMinuto) / msPorSegundo);
+
+            document.getElementById('days').innerText = dias;
+            document.getElementById('hours').innerText = horas.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutos.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = segundos.toString().padStart(2, '0');
         }
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
 
-        function scrollToSection(id) {
-            const target = document.getElementById(id);
-            if(target) target.scrollIntoView({ behavior: 'smooth' });
+        // 3. ANIMACIÓN DE REVELACIÓN EN SCROLL (Scroll Reveal)
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
         }
+        window.addEventListener('scroll', revealElements);
+        // Llamada inicial para revelar los elementos visibles de entrada
+        setTimeout(revealElements, 1500);
 
-        function updateCounter() {
-            const now = new Date();
-            const diff = now - ANNIVERSARY_DATE;
-            if (diff <= 0) return;
-
-            let years = now.getFullYear() - ANNIVERSARY_DATE.getFullYear();
-            let months = now.getMonth() - ANNIVERSARY_DATE.getMonth();
-            let days = now.getDate() - ANNIVERSARY_DATE.getDate();
-
-            if (days < 0) {
-                const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                days += prevMonth.getDate(); months--;
+        // 4. FUNCIONES DEL REPRODUCTOR DE MÚSICA
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicBtn.innerText = '⏸️';
+            } else {
+                audio.pause();
+                musicBtn.innerText = '▶️';
             }
-            if (months < 0) { months += 12; years--; }
-
-            const totalMonths = (years * 12) + months;
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('months').textContent = totalMonths;
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
-        }
-        setInterval(updateCounter, 1000);
-
-        playBtn.addEventListener('click', () => {
-            if (audio.paused) { audio.play(); playBtn.textContent = '⏸'; } 
-            else { audio.pause(); playBtn.textContent = '▶'; }
-        });
-        volumeControl.addEventListener('input', (e) => { audio.volume = e.target.value; });
-
-        function initReasons() {
-            const container = document.getElementById('reasons-container');
-            REASONS.forEach((reason, index) => {
-                const card = document.createElement('div');
-                card.className = 'card-container';
-                card.innerHTML = `
-                    <div class="card-inner">
-                        <div class="card-front"><span>${reason.icon}</span><h3>Razón #${index + 1}</h3></div>
-                        <div class="card-back"><p>${reason.text}</p></div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
         }
 
-        function initTimeline() {
-            const container = document.getElementById('timeline-box');
-            TIMELINE_EVENTS.forEach(event => {
-                const el = document.createElement('div');
-                el.className = 'timeline-event';
-                el.innerHTML = `
-                    <div class="timeline-card glass-panel">
-                        <div class="timeline-date">${event.date}</div>
-                        <h3>${event.title}</h3>
-                        <p>${event.text}</p>
-                    </div>
-                `;
-                container.appendChild(el);
-            });
-        }
-
-        function startPhraseCarousel() {
-            const phraseEl = document.getElementById('phrase-text');
-            setInterval(() => {
-                phraseEl.classList.add('fade-out');
-                setTimeout(() => {
-                    const randomIndex = Math.floor(Math.random() * ROMANTIC_PHRASES.length);
-                    phraseEl.textContent = `"${ROMANTIC_PHRASES[randomIndex]}"`;
-                    phraseEl.classList.remove('fade-out');
-                }, 500);
-            }, 15000);
-        }
-
-        function initScrollAnimation() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        }
-
-        function checkReveal() {
-            document.querySelectorAll('.reveal').forEach(reveal => {
-                if (reveal.getBoundingClientRect().top < window.innerHeight - 50) reveal.classList.add('active');
-            });
-        }
-        window.addEventListener('scroll', checkReveal);
-
+        // 5. FUNCIONES DE LA GALERÍA LIGHTBOX
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        window.openLightbox = function(src) { lightboxImg.src = src; lightbox.classList.add('active'); }
-        window.closeLightbox = function() { lightbox.classList.remove('active'); }
 
-        const noteInput = document.getElementById('note-input');
-        const btnSaveNote = document.getElementById('btn-save-note');
-        const notesContainer = document.getElementById('notes-container');
-        let notes = JSON.parse(localStorage.getItem('mishel_notes')) || [];
-
-        function initNotes() { renderNotes(); btnSaveNote.addEventListener('click', saveNote); }
-        function renderNotes() {
-            notesContainer.innerHTML = '';
-            notes.forEach((note, index) => {
-                const card = document.createElement('div');
-                card.className = 'note-card';
-                card.innerHTML = `
-                    <div class="note-content">${escapeHTML(note)}</div>
-                    <div class="note-actions">
-                        <button class="btn-note-action btn-edit" onclick="editNote(${index})">Editar</button>
-                        <button class="btn-note-action btn-delete" onclick="deleteNote(${index})">Eliminar</button>
-                    </div>
-                `;
-                notesContainer.appendChild(card);
-            });
-        }
-        function saveNote() {
-            const text = noteInput.value.trim(); if (!text) return;
-            notes.push(text); localStorage.setItem('mishel_notes', JSON.stringify(notes));
-            noteInput.value = ''; renderNotes();
-        }
-        window.deleteNote = function(index) { notes.splice(index, 1); localStorage.setItem('mishel_notes', JSON.stringify(notes)); renderNotes(); }
-        window.editNote = function(index) {
-            const newText = prompt("Edita tu pensamiento:", notes[index]);
-            if (newText !== null && newText.trim() !== "") {
-                notes[index] = newText.trim(); localStorage.setItem('mishel_notes', JSON.stringify(notes)); renderNotes();
-            }
-        }
-        function escapeHTML(str) { return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)); }
-
-        function startInteractiveClicks() {
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('button') || e.target.closest('input') || e.target.closest('textarea')) return;
-                const heart = document.createElement('div');
-                heart.className = 'heart-click'; heart.innerHTML = '❤️';
-                heart.style.left = `${e.clientX}px`; heart.style.top = `${e.clientY}px`;
-                const size = Math.random() * 20 + 15; const rotate = Math.random() * 360;
-                heart.style.fontSize = `${size}px`; heart.style.transform = `translate(-50%, -50%) rotate(${rotate}deg)`;
-                heart.style.transition = 'all 0.8s ease-out';
-                document.body.appendChild(heart);
-                setTimeout(() => {
-                    heart.style.transform = `translate(-50%, -150%) rotate(${rotate + 45}deg) scale(0.5)`; heart.style.opacity = '0';
-                }, 100);
-                setTimeout(() => heart.remove(), 800);
-            });
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
         }
 
-        function startPetalRain() {
-            const petalSymbols = ['🌸', '✨', '💖', '❤️'];
-            setInterval(() => {
-                const element = document.createElement('div');
-                element.className = 'petal'; element.textContent = petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
-                element.style.left = `${Math.random() * 100}vw`; element.style.top = `-20px`;
-                const size = Math.random() * 15 + 10; const opacity = Math.random() * 0.7 + 0.3;
-                element.style.fontSize = `${size}px`; element.style.opacity = opacity;
-                element.style.transition = `transform 6s linear, opacity 6s ease-in`;
-                document.body.appendChild(element);
-                setTimeout(() => {
-                    element.style.transform = `translate(${Math.random() * 150 - 75}px, 105vh) rotate(${Math.random() * 720}deg)`; element.style.opacity = '0';
-                }, 50);
-                setTimeout(() => element.remove(), 6000);
-            }, 600);
+        function closeLightbox() {
+            lightbox.classList.remove('active');
         }
     </script>
 </body>
