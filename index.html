@@ -3,14 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Aquí cambiamos el título de la pestaña -->
     <title>Mishelita ❤️</title>
-    <!-- Fuentes Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-color: #fff7f8;
+            --primary: #ff4d6d;
+            --secondary: #ff85a1;
+            --detail: #ffc2d1;
+            --text: #4a2c2a;
+            --white-glass: rgba(255, 255, 255, 0.75);
+            --shadow-md: 0 8px 30px rgba(255, 77, 109, 0.15);
+        }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+        .glass-panel { background: var(--white-glass); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 24px; padding: 3rem; }
+        .counter-container { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem;}
+        .counter-box { min-width: 120px; padding: 2rem 1rem; border-radius: 20px; background: white; border: 1px solid var(--detail); }
+        .counter-number { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <!-- CONTADOR DE TIEMPO -->
+    <section class="container" id="contador">
+        <div class="glass-panel">
+            <h2>El tiempo que llevamos amándonos</h2>
+            
+            <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; margin: 2rem 0; opacity: 0.8;">
+                Desde el 04 de Enero de 2026
+            </p>
+
+            <div class="counter-container">
+                <div class="counter-box">
+                    <span class="counter-number" id="days">00</span>
+                    <p>Días</p>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="hours">00</span>
+                    <p>Horas</p>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="minutes">00</span>
+                    <p>Minutos</p>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" id="seconds">00</span>
+                    <p>Segundos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // La fecha: 4 de Enero de 2026 (El 0 es Enero)
+        const fechaInicio = new Date(2026, 0, 4, 13, 30, 0);
+
+        function actualizarContador() {
+            const ahora = new Date();
+            const diferencia = ahora - fechaInicio;
+
+            const msPorSegundo = 1000;
+            const msPorMinuto = msPorSegundo * 60;
+            const msPorHora = msPorMinuto * 60;
+            const msPorDia = msPorHora * 24;
+
+            const dias = Math.floor(diferencia / msPorDia);
+            const horas = Math.floor((diferencia % msPorDia) / msPorHora);
+            const minutos = Math.floor((diferencia % msPorHora) / msPorMinuto);
+            const segundos = Math.floor((diferencia % msPorMinuto) / msPorSegundo);
+
+            document.getElementById('days').innerText = dias;
+            document.getElementById('hours').innerText = horas.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutos.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = segundos.toString().padStart(2, '0');
+        }
+        
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
+    </script>
+</body>
+</html>
         /* ==========================================
            VARIABLES Y CONFIGURACIÓN GLOBAL
            ========================================== */
