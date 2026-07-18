@@ -915,7 +915,7 @@
     <canvas id="ambient-canvas"></canvas>
     <canvas id="click-canvas"></canvas>
 
-    <!-- Audio Element (Configurar archivo aquí) -->
+    <!-- Audio Element -->
     <audio id="romantic-audio" src="tu-musica.mp3" loop></audio>
 
     <!-- ==========================================
@@ -989,21 +989,21 @@
             <div class="container">
                 <h2 class="section-title">Nuestros Momentos</h2>
                 <div class="gallery-grid">
-                    <div class="polaroid" onclick="openLightbox('IMG-20260215-WA0004.jpg')">
+                    <div class="polaroid" onclick="openLightbox('foto1.jpg')">
                         <div class="polaroid-img-wrapper">
-                            <img src="IMG-20260215-WA0004.jpg" alt="Momento 1">
+                            <img src="foto1.jpg" alt="Momento 1">
                         </div>
                         <p class="polaroid-phrase">Tu sonrisa ilumina todo.</p>
                     </div>
-                    <div class="polaroid" onclick="openLightbox('IMG-20260531-WA0005.jpg')">
+                    <div class="polaroid" onclick="openLightbox('foto2.jpg')">
                         <div class="polaroid-img-wrapper">
-                            <img src="IMG-20260531-WA0005.jpg" alt="Momento 2">
+                            <img src="foto2.jpg" alt="Momento 2">
                         </div>
                         <p class="polaroid-phrase">El mundo es mejor contigo.</p>
                     </div>
-                    <div class="polaroid" onclick="openLightbox('IMG-20260517-WA0001.jpg')">
+                    <div class="polaroid" onclick="openLightbox('foto3.jpg')">
                         <div class="polaroid-img-wrapper">
-                            <img src="IMG-20260517-WA0001.jpg" alt="Momento 3">
+                            <img src="foto3.jpg" alt="Momento 3">
                         </div>
                         <p class="polaroid-phrase">Mi lugar favorito en el universo.</p>
                     </div>
@@ -1106,9 +1106,7 @@
         /* ==========================================================================
            CONFIGURACIÓN DEL ARREGLO DE TIEMPO INICIAL (Fácil de modificar)
            ========================================================================== */
-        // Formato exacto: Año, Mes (0-11), Día, Horas, Minutos
-        // Ejemplo: 6 meses y 13 días atrás desde la fecha actual para coincidir con la solicitud exacta.
-        const START_DATE = new Date(2026, 0, 4, 13, 30, 0); // Modifica según tu fecha exacta real
+        const START_DATE = new Date(2026, 0, 4, 13, 30, 0); 
 
         // Listado de 12 razones
         const REASONS = [
@@ -1126,7 +1124,7 @@
             "Simplemente por ser tú, la mujer de mi vida."
         ];
 
-        // Configuración de la línea del tiempo (Fácil adición/edición)
+        // Configuración de la línea del tiempo
         const TIMELINE_DATA = [
             { date: "Día Uno", title: "Primer mensaje", desc: "El instante exacto en el que esta bonita historia comenzó a escribirse con un saludo." },
             { date: "Gran Día", title: "Primera salida", desc: "Los nervios a flor de piel, las risas en persona y el inicio de una complicidad real." },
@@ -1135,7 +1133,7 @@
             { date: "Sincero", title: "Primer \"te amo\"", desc: "Las palabras más puras pronunciadas desde el fondo del alma con total certeza." }
         ];
 
-        // Pool de más de 50 frases románticas
+        // Pool de frases románticas
         const ROMANTIC_PHRASES = [
             "Eres el pensamiento más bonito de mis días.", "Contigo todo es magia.", "Tu amor es mi refugio favorito.",
             "Eres suficiente, hermosa e inteligente.", "Mi lugar favorito en el mundo es a tu lado.", "Te amo más de lo que las palabras pueden explicar.",
@@ -1169,11 +1167,8 @@
         envelope.addEventListener('click', () => {
             if(!envelope.classList.contains('open')) {
                 envelope.classList.add('open');
-                
-                // Pequeño sintetizador de audio nativo para efecto de apertura premium
                 playNotificationSound();
 
-                // Reproducir música principal de fondo si el archivo está configurado
                 audio.play().then(() => {
                     musicToggleBtn.textContent = "║";
                 }).catch(e => console.log("Audio en espera de interacción directa."));
@@ -1198,8 +1193,8 @@
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-            osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.3); // G5
+            osc.frequency.setValueAtTime(523.25, ctx.currentTime); 
+            osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.3); 
             gain.gain.setValueAtTime(0.15, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
             osc.connect(gain);
@@ -1219,13 +1214,11 @@
             const now = new Date();
             let diff = now - START_DATE;
 
-            // Cálculos precisos de desgloses de tiempo
             const msPerSecond = 1000;
             const msPerMinute = 60 * msPerSecond;
             const msPerHour = 60 * msPerMinute;
             const msPerDay = 24 * msPerHour;
 
-            // Estimación de meses aproximados para la visualización fluida
             const months = Math.floor(diff / (30.436875 * msPerDay));
             diff -= months * (30.436875 * msPerDay);
 
@@ -1305,7 +1298,7 @@
             }, 600);
         }
         setInterval(changePhrase, 15000);
-        changePhrase(); // Carga inicial rápida
+        changePhrase();
 
         /* ==========================================================================
            MÓDULO DE NOTAS INTERACTIVAS CON LOCALSTORAGE
@@ -1418,7 +1411,7 @@
         });
 
         /* ==========================================================================
-           EFECTOS VISUALES: SISTEMA DE ESCARCHA Y CORAZONES AMBIENTALES (Canvas Nativos)
+           EFECTOS VISUALES: SISTEMA DE ESCARCHA Y CORAZONES AMBIENTALES
            ========================================================================== */
         const ambientCanvas = document.getElementById('ambient-canvas');
         const aCtx = ambientCanvas.getContext('2d');
@@ -1437,7 +1430,6 @@
         window.addEventListener('resize', resizeCanvases);
         resizeCanvases();
 
-        // Estructura de partícula ambiental
         class AmbientParticle {
             constructor() {
                 this.reset();
@@ -1484,7 +1476,6 @@
             }
         }
 
-        // Estructura de chispa al dar clic
         class ClickSpark {
             constructor(x, y) {
                 this.x = x;
@@ -1500,7 +1491,7 @@
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                this.vy += 0.05; // Leve gravedad descendente
+                this.vy += 0.05; 
                 this.opacity -= this.decay;
             }
             draw() {
@@ -1517,12 +1508,10 @@
             }
         }
 
-        // Instanciación inicial partículas ambientales
         for(let i = 0; i < 45; i++) {
             particles.push(new AmbientParticle());
         }
 
-        // Captura de clics globales para chispas extras
         window.addEventListener('click', (e) => {
             if(welcomeScreen.style.display === 'none') {
                 for (let i = 0; i < 8; i++) {
@@ -1531,7 +1520,6 @@
             }
         });
 
-        // Loop principal del motor de render
         function mainAnimationLoop() {
             aCtx.clearRect(0, 0, ambientCanvas.width, ambientCanvas.height);
             particles.forEach(p => {
@@ -1552,9 +1540,6 @@
         }
         mainAnimationLoop();
 
-        /* ==========================================================================
-           MÓDULO SCROLL REVEAL OPTIMIZADO (IntersectionObserver)
-           ========================================================================== */
         function initScrollReveal() {
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries) => {
