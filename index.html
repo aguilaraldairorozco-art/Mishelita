@@ -442,225 +442,6 @@
         }
 
         /* ==========================================
-           TARJETAS FLIP (RAZONES POR LAS QUE TE AMO)
-           ========================================== */
-        .reasons-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 3rem;
-        }
-
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 2rem;
-        }
-
-        .card-container {
-            perspective: 1000px;
-            height: 250px;
-        }
-
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
-            cursor: pointer;
-        }
-
-        .card-container:hover .card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            border-radius: 20px;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-front {
-            background: var(--white-glass);
-            border: 1px solid rgba(255, 77, 109, 0.2);
-            color: var(--primary);
-        }
-
-        .card-front span {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-front h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .card-back {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            transform: rotateY(180deg);
-        }
-
-        .card-back p {
-            font-size: 1.05rem;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        /* ==========================================
-           SECCIÓN DE NOTAS INTERACTIVAS
-           ========================================== */
-        .notes-section {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .notes-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-        }
-
-        .note-creator {
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .note-creator textarea {
-            width: 100%;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid var(--detail);
-            border-radius: 12px;
-            padding: 1rem;
-            font-family: inherit;
-            font-size: 1rem;
-            color: var(--text);
-            resize: none;
-            outline: none;
-            margin-bottom: 1rem;
-            transition: var(--transition);
-        }
-
-        .notes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .note-card {
-            background: #fff;
-            border-left: 5px solid var(--primary);
-            padding: 1.5rem;
-            border-radius: 8px 16px 16px 8px;
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 180px;
-            transition: var(--transition);
-        }
-
-        .note-content {
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            word-wrap: break-word;
-            white-space: pre-wrap;
-        }
-
-        .note-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.5rem;
-        }
-
-        .btn-note-action {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-
-        .btn-edit { color: var(--text); background-color: rgba(0,0,0,0.05); }
-        .btn-delete { color: white; background-color: var(--primary); }
-
-        /* ==========================================
-           LÍNEA DEL TIEMPO
-           ========================================== */
-        .timeline-container {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
-
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 4px;
-            background: var(--detail);
-            transform: translateX(-50%);
-        }
-
-        .timeline-event {
-            position: relative;
-            margin-bottom: 4rem;
-            width: 50%;
-            padding-right: 3rem;
-            text-align: right;
-        }
-
-        .timeline-event:nth-child(even) {
-            left: 50%;
-            padding-right: 0;
-            padding-left: 3rem;
-            text-align: left;
-        }
-
-        .timeline-event::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: -10px;
-            width: 20px;
-            height: 20px;
-            background-color: var(--primary);
-            border: 4px solid var(--bg-color);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .timeline-event:nth-child(even)::after { left: -10px; right: auto; }
-        .timeline-card { padding: 2rem; }
-        .timeline-date {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        /* ==========================================
            REPRODUCTOR DE MÚSICA FLOTANTE
            ========================================== */
         .music-player {
@@ -742,6 +523,12 @@
     <section class="container reveal" id="contador">
         <div class="counter-section glass-panel" style="padding: 4rem 2rem;">
             <h2>El tiempo que llevamos amándonos</h2>
+            
+            <!-- CORRECCIÓN: Aquí aparece el párrafo con tu fecha exacta escrita -->
+            <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--text); margin-top: -1.5rem; margin-bottom: 3rem; opacity: 0.9;">
+                Desde el 04 de Enero de 2026 a las 1:30 PM
+            </p>
+
             <div class="counter-container">
                 <div class="counter-box">
                     <span class="counter-number" id="days">00</span>
@@ -792,7 +579,6 @@
     <div class="music-player">
         <span>Nuestra Música 🎵</span>
         <button class="music-btn" id="music-toggle" onclick="toggleMusic()">▶️</button>
-        <!-- Reemplaza "musica.mp3" con la ruta de tu archivo de música real -->
         <audio id="bg-audio" src="musica.mp3" loop></audio>
     </div>
 
@@ -816,18 +602,16 @@
             setTimeout(() => {
                 welcomeScreen.style.opacity = '0';
                 welcomeScreen.style.visibility = 'hidden';
-                // Intentar reproducir música automáticamente al abrir
                 audio.play().then(() => {
                     musicBtn.innerText = '⏸️';
-                }).catch(err => console.log("Reproducción automática prevenida por el navegador. Reclama interacción humana."));
+                }).catch(err => console.log("Reproducción automática prevenida por el navegador."));
             }, 1200);
         }
 
         envelopeWrapper.addEventListener('click', abrirSobre);
         btnOpenSite.addEventListener('click', abrirSobre);
 
-        // 2. CONFIGURACIÓN DEL CONTADOR DE ANIVERSARIO (4 de Enero de 2026, 1:30 PM)
-        // Año: 2026, Mes: 0 (Enero en JS), Día: 4, Hora: 13 (1 PM), Minutos: 30, Segundos: 0
+        // 2. CONFIGURACIÓN DEL CONTADOR DE ANIVERSARIO (04/Ene/2026, 13:30 hs)
         const fechaInicio = new Date(2026, 0, 4, 13, 30, 0);
 
         function actualizarContador() {
@@ -852,7 +636,7 @@
         actualizarContador();
         setInterval(actualizarContador, 1000);
 
-        // 3. ANIMACIÓN DE REVELACIÓN EN SCROLL (Scroll Reveal)
+        // 3. ANIMACIÓN DE REVELACIÓN EN SCROLL
         function revealElements() {
             const reveals = document.querySelectorAll('.reveal');
             reveals.forEach(element => {
@@ -866,7 +650,6 @@
             });
         }
         window.addEventListener('scroll', revealElements);
-        // Llamada inicial para revelar los elementos visibles de entrada
         setTimeout(revealElements, 1500);
 
         // 4. FUNCIONES DEL REPRODUCTOR DE MÚSICA
