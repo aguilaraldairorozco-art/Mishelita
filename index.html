@@ -2,583 +2,1571 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale= 1.0 ">
-    <!-- Aquí cambiamos el título de la pestaña -->
-    <title>Mishelita ❤️</title>
-    <!-- Fuentes Premium -->
-    <link rel="preconnect" href=" https://fonts.googleapis.com ">
-    <link rel="preconnect" href=" https://fonts.gstatic.com " crossorigin>
-    <link href=" https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;600;700&display=swap " rel="stylesheet">
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi bonita Mishel ❤️</title>
+    
+    <!-- Fuentes Premium de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* ==========================================
-           VARIABLES Y CONFIGURACIÓN GLOBAL
-           =========================================== */
+        /* ==========================================================================
+           VARIABLES DE DISEÑO (Paleta de Colores Exclusiva)
+           ========================================================================== */
         :root {
             --bg-color: #fff7f8;
-            --primary: #ff4d6d;
-            --secondary: #ff85a1;
-            --detail: #ffc2d1;
-            --text: #4a2c2a;
-            --white-glass: rgba( 255 , 255 , 255 , 0.75 );
-            --shadow-sm: 0 4 px 12px rgba( 255 , 77, 109 , 0.1 );
-            --shadow-md: 0 8 px 30px rgba( 255 , 77, 109 , 0.15 );
-            --shadow-lg: 0 16 px 40px rgba(74, 44, 42, 0.12 );
-            --transition: all 0.4 s cubic-bezier( 0.16 , 1, 0.3 , 1);
+            --primary-color: #ff4d6d;
+            --secondary-color: #ff85a1;
+            --detail-color: #ffc2d1;
+            --text-color: #4a2c2a;
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-border: rgba(255, 133, 161, 0.3);
+            --shadow-sm: 0 4px 12px rgba(74, 44, 42, 0.05);
+            --shadow-md: 0 8px 24px rgba(74, 44, 42, 0.08);
+            --shadow-lg: 0 16px 40px rgba(255, 77, 109, 0.12);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* ==========================================================================
+           ESTILOS BASE Y RESETS
+           ========================================================================== */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html {
+            box-sizing: border-box;
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-body);
             background-color: var(--bg-color);
-            color: var(--text);
+            color: var(--text-color);
             overflow-x: hidden;
-            line-height: 1.6 ;
+            min-height: 100vh;
+            line-height: 1.6;
         }
 
-        h1, h2, h3, .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Degradado animado de fondo suave */
+        /* Animación suave de fondo con gradiente lento */
         .bg-animated {
-            posición: fija;
-            superior: 0;
+            position: fixed;
+            top: 0;
             left: 0;
-            width: 100 %;
-            height: 100 %;
-            z-index: -10;
-            background: linear-gradient( 135 deg, #fff7f 8 0 %, #fff0f 2 50 %, #ffe5eb 100 %);
-            background-size: 400 % 400 %;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #fff7f8 0%, #ffeef1 50%, #fff7f8 100%);
+            background-size: 400% 400%;
+            z-index: -3;
             animation: gradientMove 20s ease infinite;
         }
 
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
-            50% { background-position: 100 % 50%; }
-            100 % { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Contenedores y Estilos de Grid */
-        .container {
-            max-width: 1200 px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
+        /* Ocultar scrollbar general durante la bienvenida */
+        body.locked {
+            overflow: hidden;
         }
 
-        /* Botones Premium */
-        .btn-premium {
-            background: linear-gradient( 135 deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 0.9 rem 2.2 rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600 ;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            outline: none;
+        /* Componentes de Scroll Reveal (Animación al bajar) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: var(--transition-smooth);
         }
 
-        .btn-premium:hover {
-            transform: translateY(-4px) scale( 1.02 );
-            box-shadow: 0 12 px 24px rgba( 255 , 77, 109 , 0.35 );
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
-        /* Estilo Glassmorphism General */
-        .glass-panel {
-            background: var(--white-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba( 255 , 255 , 255 , 0.6 );
-            box-shadow: var(--shadow-md);
-            border-radius: 24px;
-        }
-
-        /* ===========================================
-           PANTALLA DE BIENVENIDA (SOBRE)
-           =========================================== */
-        #welcome-screen {
+        /* ==========================================================================
+           COMPONENTE: ELEMENTOS FLOTANTES CONSTANTES (Canvas)
+           ========================================================================== */
+        #ambient-canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100 vw;
-            height: 100 vh;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        #click-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ==========================================================================
+           SECCIÓN: PANTALLA DE BIENVENIDA (El Sobre Romántico)
+           ========================================================================== */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             background-color: var(--bg-color);
-            z-index: 10000 ;
+            z-index: 10000;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 1s ease, visibility 1s;
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .envelope-wrapper {
+        .envelope-container {
+            width: 320px;
+            height: 220px;
+            background: #ffffff;
+            border-radius: 0 0 12px 12px;
+            box-shadow: var(--shadow-lg);
             position: relative;
             cursor: pointer;
-            perspective: 1000 px;
-            ancho: 320 px;
-            alto: 220 px;
-            margen inferior: 30px;
-        }
-
-        .envelope {
-            posición: relativa;
-            ancho: 100 %;
-            alto: 100 %;
-            color de fondo: var(--secondary);
-            radio de borde: 0 0 10 px 10px;
-            sombra de caja: var(--shadow-lg);
-            transición: var(--transition);
-        }
-
-        .envelope::before {
-            contenido: "";
-            posición: absoluta;
-            arriba: 0;
-            izquierda: 0;
-            borde izquierdo: 160 px sólido transparente;
-            borde derecho: 160 px sólido transparente;
-            borde superior: 110 px sólido var(--detail);
-            origen de transformación: arriba;
-            transición: transformación 0.6 s ease 0.2 s, z-index 0.2 s ease 0.4 s;
-            z-index: 4;
-        }
-
-        .envelope-body {
-            posición: absoluta;
-            inferior: 0;
-            ancho: 0;
-            alto: 0;
-            borde izquierdo: 160 px sólido var(--secondary);
-            borde derecho: 160 px sólido var(--secondary);
-            borde inferior: 110 px sólido #ff5d8f;
-            radio del borde:0 0 10 px 10px;
-            z-index: 3;
-        }
-
-        .letter {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-            background: white;
-            border-radius: 8px;
-            z-index: 2;
-            transition: transform 0.6 s ease;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 -5 px 15px rgba(0,0,0, 0.05 );
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
+            padding-bottom: 30px;
+            transition: transform 0.4s ease;
         }
 
-        .letter p {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1 rem;
-            color: var(--text);
-            margin-bottom: 8px;
+        .envelope-container:hover {
+            transform: translateY(-5px);
         }
 
-        . envelope-wrapper.open .envelope::before {
-            transform: rotateX( 180 deg);
+        /* Triángulo superior del sobre */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 120px solid var(--secondary-color);
+            transform-origin: top;
+            transition: transform 0.6s ease;
+            z-index: 2;
+        }
+
+        .envelope-container.open .envelope-flap {
+            transform: rotateX(180deg) translateY(2px);
             z-index: 1;
         }
 
-        . envelope-wrapper.open .letter {
-            transform: translateY(- 110 px);
-            z-index: 5;
+        /* Botón Premium para abrir la carta */
+        .btn-open {
+            font-family: var(--font-body);
+            background: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-smooth);
+            z-index: 3;
+            letter-spacing: 0.5px;
         }
 
-        .welcome-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+        .btn-open:hover {
+            background: #e03a5a;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.3);
         }
 
-        /* ===========================================
-           SISTEMA DE ANIMACIÓN AL SCROLL
-           ========================================== */
-        .reveal {
+        /* ==========================================================================
+           CONTENEDOR PRINCIPAL DE LA PÁGINA (Inicialmente Oculto)
+           ========================================================================== */
+        #main-content {
             opacity: 0;
-            transform: translateY(40px) scale( 0.97 );
-            transición: opacidad 1.2 s cubic-bezier( 0.16 , 1, 0.3 , 1), transformación 1.2 s cubic-bezier( 0.16 , 1, 0.3 , 1);
+            display: none;
+            transition: opacity 1.5s ease;
         }
 
-        . reveal.active {
-            opacidad: 1;
-            transformación: translateY(0) scale(1);
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        /* ===========================================
-           SECCIÓN HERO
-           ========================================== */
-        encabezado {
-            altura mínima: 100 vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Ebanistería Glassmorphism Reutilizable */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-smooth);
+        }
+
+        .glass-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(255, 77, 109, 0.4);
+        }
+
+        /* Títulos de sección */
+        .section-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--text-color);
             text-align: center;
-            padding: 2rem;
+            margin-bottom: 50px;
             position: relative;
         }
 
-        .hero-card {
-            padding: 4rem 3rem;
-            max-width: 750 px;
-            width: 100 %;
+        .section-title::after {
+            content: '❤️';
+            display: block;
+            font-size: 1.2rem;
+            margin-top: 8px;
+            opacity: 0.7;
         }
 
-        .hero-card h1 {
-            font-size: 4.5 rem;
-            color: var(--primary);
-            margin-bottom: 1.5 rem;
-            line-height: 1.2 ;
-            animation: bounceSoft 4s ease-in-out infinite;
-        }
-
-        .hero-card p {
-            font-size: 1.35 rem;
-            margin-bottom: 2.5 rem;
-            font-weight: 300 ;
-        }
-
-        @keyframes bounceSoft {
-            0%, 100 % { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        /* ==========================================
-           MENSAJE PRINCIPAL
-           =========================================== */
-        .main-message {
-            background: linear-gradient( 135 deg, rgba( 255 , 77, 109 , 0.08 ) 0%, rgba( 255 , 133 , 161 , 0.05 ) 100 %);
-            border: 1px solid rgba( 255 , 77, 109 , 0.15 );
-            padding: 5rem 3rem;
+        /* ==========================================================================
+           SECCIÓN: HERO
+           ========================================================================== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            border-radius: 35px;
-            margin: 2rem 0;
+            position: relative;
         }
 
-        .main-message p {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.1 rem;
-            line-height: 1.7 ;
-            font-style: italic;
-            color: var(--text);
-            max-width: 900 px;
+        .hero-title {
+            font-family: var(--font-title);
+            font-size: 4.5rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            animation: fadeInZoom 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--text-color);
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        .btn-premium {
+            font-family: var(--font-body);
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.25);
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 77, 109, 0.35);
+        }
+
+        @keyframes fadeInZoom {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* ==========================================================================
+           SECCIÓN: MENSAJE PRINCIPAL ENORME
+           ========================================================================== */
+        .main-message-section {
+            padding: 100px 0;
+        }
+
+        .message-gradient-wrapper {
+            background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,194,209,0.2) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .message-text {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 850px;
             margin: 0 auto;
         }
 
-        /* ===========================================
-           CONTADOR
-           ========================================== */
+        /* ==========================================================================
+           SECCIÓN: CONTADOR AUTOMÁTICO
+           ========================================================================== */
         .counter-section {
+            padding: 80px 0;
             text-align: center;
         }
 
-        .counter-section h2 {
-            font-size: 2.5 rem;
-            color: var(--primary);
-            margin-bottom: 3rem;
+        .counter-section h3 {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
-        .counter-container {
-            display: flex;
-            justify-content: center;
-            gap: 1.5 rem;
-            flex-wrap: wrap;
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .counter-box {
-            min-width: 120 px;
-            padding: 2rem 1rem;
+        .counter-block {
+            padding: 24px;
             border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5 rem;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
-        .counter-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2 rem;
-            font-weight: 700 ;
-            color: var(--primary);
-            line-height: 1;
+        .counter-value {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
         }
 
         .counter-label {
-            font-size: 0.85 rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600 ;
-            opacity: 0.8 ;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            font-weight: 500;
         }
 
-        /* ===========================================
-           GALERÍA POLAROID (FOTOS)
-           =========================================== */
+        /* ==========================================================================
+           SECCIÓN: GALERÍA POLAROID Y LIGHTBOX
+           ========================================================================== */
+        .gallery-section {
+            padding: 100px 0;
+        }
+
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax( 280 px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            justify-content: center;
         }
 
         .polaroid {
-            background-color: white;
-            padding: 1.2 rem;
-            padding-bottom: 2.5 rem;
-            box-shadow: var(--shadow-md);
+            background: #ffffff;
+            padding: 18px 18px 35px 18px;
+            box-shadow: 0 10px 30px rgba(74, 44, 42, 0.08);
             border-radius: 4px;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
             cursor: pointer;
             position: relative;
         }
 
+        .polaroid-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background-color: #eee;
+            margin-bottom: 20px;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .polaroid-phrase {
+            font-family: var(--font-title);
+            font-style: italic;
+            font-size: 1.15rem;
+            text-align: center;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        /* Inclinaciones aleatorias para efecto realista */
         .polaroid:nth-child(1) { transform: rotate(-2deg); }
-        .polaroid:nth-child(2) { transform: rotate( 1.5 deg); }
+        .polaroid:nth-child(2) { transform: rotate(1.5deg); }
         .polaroid:nth-child(3) { transform: rotate(-1deg); }
 
         .polaroid:hover {
-            transform: scale( 1.05 ) rotate(0deg) translateY(-10px);
-            box-shadow: var(--shadow-lg);
+            transform: scale(1.04) rotate(0deg) translateY(-10px);
+            box-shadow: 0 20px 45px rgba(255, 77, 109, 0.18);
             z-index: 10;
         }
 
-        .polaroid-img-wrapper {
-            width: 100 %;
-            aspect-ratio: 1;
-            overflow: hidden;
-            background-color: #eee;
-            margin-bottom: 1.5 rem;
-            border: 1px solid rgba(0,0,0, 0.05 );
+        .polaroid:hover img {
+            transform: scale(1.06);
         }
 
-        .polaroid-img-wrapper img {
-            width: 100 %;
-            height: 100 %;
-            object-fit: cover;
-            transition: transform 0.6 s ease;
-        }
-
-        .polaroid:hover .polaroid-img-wrapper img {
-            transform: scale( 1.1 );
-        }
-
-        .polaroid-caption {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            text-align: center;
-            font-size: 1.15 rem;
-            color: var(--text);
-        }
-
-        /* Lightbox */
+        /* Estilos del Lightbox Premium */
         .lightbox {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100 %;
-            height: 100 %;
-            background-color: rgba(74, 44, 42, 0.95 );
-            backdrop-filter: blur(8px);
-            z-index: 20000 ;
+            width: 100%;
+            height: 100%;
+            background: rgba(74, 44, 42, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 20000;
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4 s ease;
+            transition: opacity 0.4s ease;
         }
 
-        . lightbox.active {
+        .lightbox.active {
             opacity: 1;
             pointer-events: auto;
         }
 
         .lightbox-content {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 12px;
-            box-shadow: 0 10 px 40px rgba(0,0,0, 0.5 );
-            transform: scale( 0.9 );
-            transition: transform 0.4 s ease;
+            max-width: 85vw;
+            max-height: 80vh;
+            transform: scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
-        . lightbox.active .lightbox-content {
+        .lightbox.active .lightbox-content {
             transform: scale(1);
         }
 
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 3rem;
+            top: 30px;
+            right: 40px;
+            color: #ffffff;
+            font-size: 2.5rem;
             cursor: pointer;
-            user-select: none;
+            transition: opacity 0.3s;
         }
 
-        /* ===========================================
-           TARJETAS FLIP (RAZONES POR LAS QUE TE AMO)
-           =========================================== */
-        .reasons-title {
-            text-align: center;
-            font-size: 2.5 rem;
-            color: var(--primary);
-            margin-bottom: 3rem;
+        .lightbox-close:hover { opacity: 0.7; }
+
+        /* ==========================================================================
+           SECCIÓN: RAZONES POR LAS QUE TE AMO (3D Flip Cards)
+           ========================================================================== */
+        .reasons-section {
+            padding: 100px 0;
         }
 
         .reasons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax( 240 px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
 
-        .card-container {
-            perspective: 1000 px;
-            height: 250 px;
-        }
-
-        .card-inner {
-            position: relative;
-            width: 100 %;
-            height: 100 %;
-            text-align: center;
-            transition: transform 0.8 s cubic-bezier( 0.175 , 0.885 , 0.32 , 1.275 );
-            transform-style: preserve-3d;
+        .flip-card {
+            background-color: transparent;
+            height: 200px;
+            perspective: 1000px;
             cursor: pointer;
         }
 
-        .card-container:hover .card-inner {
-            transform: rotateY( 180 deg);
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
         }
 
         .card-front, .card-back {
             position: absolute;
-            width: 100 %;
-            height: 100 %;
-            backface-visibility: hidden;
+            width: 100%;
+            height: 100%;
             -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
             border-radius: 20px;
-            padding: 2rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-sm);
         }
 
         .card-front {
-            background: var(--white-glass);
-            border: 1px solid rgba( 255 , 77, 109 , 0.2 );
-            color: var(--primary);
+            background: linear-gradient(135deg, #ffffff, #ffeef1);
+            color: var(--text-color);
         }
 
-        .card-front span {
-            font-size: 3.5 rem;
-            margin-bottom: 0.5rem;
+        .card-front .number {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
         }
 
-        .card-front h3 {
-            font-size: 1.3 rem;
-            font-weight: 600 ;
+        .card-front .tap-hint {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            opacity: 0.5;
+            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         .card-back {
-            background: linear-gradient( 135 deg, var(--primary), var(--secondary));
-            color: white;
-            transform: rotateY( 180 deg);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #ffffff;
+            transform: rotateY(180deg);
+            font-size: 0.95rem;
+            font-weight: 400;
         }
 
-        .card-back p {
-            font-size: 1.05 rem;
-            font-weight: 500 ;
-            line-height: 1.5 ;
+        /* ==========================================================================
+           SECCIÓN: FRASES ALEATORIAS DINÁMICAS
+           ========================================================================== */
+        .phrases-section {
+            padding: 80px 0;
+            text-align: center;
         }
 
-        /* =================================================
-           SECCIÓN DE NOTAS INTERACTIVAS
-           =================================================== */
+        .phrase-container {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phrase-box {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--text-color);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.6s ease;
+        }
+
+        .phrase-box.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ==========================================================================
+           SECCIÓN: NOTAS (Módulo LocalStorage)
+           ========================================================================== */
         .notes-section {
-            max-width: 800 píxeles;
-            margen: 0 automático;
+            padding: 100px 0;
         }
 
-        .sección-notas h2 {
-            alineación de texto: centro;
-            tamaño de fuente: 2,5 rem;
-            color: var(--primario);
-            margen inferior: 2rem;
+        .notes-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .note-creator {
-            relleno: 2rem;
-            margen inferior: 3rem;
+        .note-input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
         }
 
-        .note-creator textarea {
-            ancho: 100 %;
-            altura: 120 píxeles;
-            background: rgba( 255 , 255 , 255 , 0.8 );
-            border: 1px solid var(--detail);
-            border-radius: 12px;
-            padding: 1rem;
-            font-family: inherit;
-            font-size: 1rem;
-            color: var(--text);
-            resize: none;
+        .note-input {
+            flex: 1;
+            padding: 16px 24px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.8);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-color);
             outline: none;
-            margin-bottom: 1rem;
-            transition: var(--transition);
+            transition: var(--transition-smooth);
         }
 
-        .notes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax( 220 px, 1fr));
-            gap: 1.5 rem;
+        .note-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 77, 109, 0.15);
         }
 
-        .note-card {
-            background: #fff;
-            border-left: 5px solid var(--primary);
-            padding: 1.5 rem;
-            border-radius: 8px 16px 16px 8px;
-            box-shadow: var(--shadow-sm);
-            posición: relativa;
+        .btn-action {
+            font-family: var(--font-body);
+            padding: 0 28px;
+            border-radius: 30px;
+            border: none;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-action:hover { background: #e03a5a; }
+
+        .notes-list {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 180 px;
-            transition: var(--transition);
+            gap: 15px;
         }
 
-        .note-content {
-            font-size: 0.95 rem;
-            margin-bottom: 1.5 rem;
-            word-wrap: break-word;
-            white-space: pre-wrap;
-        }
-
-        .note-actions {
+        .note-item {
+            background: #ffffff;
+            padding: 20px 24px;
+            border-radius: 16px;
             display: flex;
-            justify-content: flex-end;             g
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--primary-color);
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .note-text {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            word-break: break-word;
+            padding-right: 15px;
+        }
+
+        .note-buttons {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .btn-inline {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-edit { color: #2f80ed; }
+        .btn-edit:hover { background: rgba(47, 128, 237, 0.1); }
+        .btn-delete { color: var(--primary-color); }
+        .btn-delete:hover { background: rgba(255, 77, 109, 0.1); }
+
+        /* ==========================================================================
+           SECCIÓN: LÍNEA DEL TIEMPO (Timeline)
+           ========================================================================== */
+        .timeline-section {
+            padding: 100px 0;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Eje central */
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--detail-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: transparent;
+            width: 50%;
+        }
+
+        /* Indicador esférico */
+        .timeline-item::after {
+            content: '❤️';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            right: -14px;
+            top: 15px;
+            background-color: var(--bg-color);
+            z-index: 1;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+        .right::after { left: -10px; }
+
+        .timeline-card {
+            padding: 24px;
+            background: #ffffff;
+            position: relative;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .timeline-card h4 {
+            font-family: var(--font-title);
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* ==========================================================================
+           SECCIÓN FINAL: LA CARTA DE AMOR
+           ========================================================================== */
+        .final-letter-section {
+            padding: 120px 0;
+        }
+
+        .letter-paper {
+            background: #ffffff;
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 60px 50px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 4px;
+            position: relative;
+            border-top: 6px solid var(--primary-color);
+        }
+
+        .letter-content {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            white-space: pre-line;
+            margin-bottom: 40px;
+        }
+
+        .letter-signature {
+            text-align: right;
+            font-family: var(--font-title);
+            font-size: 1.35rem;
+            font-style: italic;
+        }
+
+        /* ==========================================================================
+           COMPONENTE: REPRODUCTOR DE MÚSICA FLOTANTE PREMIUM
+           ========================================================================== */
+        .music-player-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 12px 20px;
+            border-radius: 40px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            transition: var(--transition-smooth);
+        }
+
+        .music-player-widget:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .music-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+
+        .music-btn:hover { background: #e03a5a; }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .volume-slider {
+            width: 70px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+            height: 4px;
+        }
+
+        .track-info {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            max-width: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 133, 161, 0.15);
+            font-size: 0.85rem;
+            opacity: 0.7;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================================================
+           MEDIA QUERIES (Diseño Completamente Adaptable)
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .section-title { font-size: 2rem; }
+            .message-text { font-size: 1.5rem; }
+            .letter-paper { padding: 40px 24px; }
+            .letter-content { font-size: 1.15rem; }
+            
+            /* Ajuste del Timeline a una sola columna móvil */
+            .timeline-container::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 55px; padding-right: 0; }
+            .timeline-item.right { left: 0; }
+            .timeline-item::after { left: 20px; right: auto; }
+            
+            .music-player-widget {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 14px;
+            }
+            .volume-control { display: none; } /* Simplificación en móviles */
+        }
+    </style>
+</head>
+<body class="locked">
+
+    <!-- Capas de animación de ambiente y partículas -->
+    <div class="bg-animated"></div>
+    <canvas id="ambient-canvas"></canvas>
+    <canvas id="click-canvas"></canvas>
+
+    <!-- Audio Element (Configurar archivo aquí) -->
+    <audio id="romantic-audio" src="tu-musica.mp3" loop></audio>
+
+    <!-- ==========================================
+         PANTALLA DE BIENVENIDA
+         ========================================== -->
+    <section class="welcome-screen" id="welcomeScreen">
+        <div class="envelope-container" id="envelope">
+            <div class="envelope-flap"></div>
+            <button class="btn-open" id="btnOpen">Abrir mi carta ❤️</button>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CONTENEDOR PRINCIPAL
+         ========================================== -->
+    <main id="main-content">
+        
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Hola, Mishel ❤️</h1>
+                <p class="hero-subtitle">Este pequeño rincón existe para recordarte lo increíble que eres.</p>
+                <button class="btn-premium" onclick="scrollToSection('mensaje')">Comenzar</button>
+            </div>
+        </section>
+
+        <!-- MENSAJE PRINCIPAL -->
+        <section class="main-message-section reveal" id="mensaje">
+            <div class="container">
+                <div class="message-gradient-wrapper">
+                    <p class="message-text">
+                        "Dentro de este mundo la persona más valiosa eres tú, Mishel. 
+                        Quiero que cada vez que abras esta página recuerdes que eres suficiente, hermosa, inteligente, fuerte y profundamente amada. 
+                        Nunca olvides cuánto vales para mí."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTADOR AUTOMÁTICO -->
+        <section class="counter-section reveal">
+            <div class="container">
+                <h3>Llevamos juntos</h3>
+                <div class="counter-grid" id="countdownGrid">
+                    <div class="counter-block">
+                        <span class="counter-value" id="calc-months">-</span>
+                        <span class="counter-label">Meses</span>
+                    </div>
+                    <div class="counter-block">
+                        <span class="counter-value" id="calc-days">-</span>
+                        <span class="counter-label">Días</span>
+                    </div>
+                    <div class="counter-block">
+                        <span class="counter-value" id="calc-hours">-</span>
+                        <span class="counter-label">Horas</span>
+                    </div>
+                    <div class="counter-block">
+                        <span class="counter-value" id="calc-minutes">-</span>
+                        <span class="counter-label">Minutos</span>
+                    </div>
+                    <div class="counter-block">
+                        <span class="counter-value" id="calc-seconds">-</span>
+                        <span class="counter-label">Segundos</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERÍA POLAROID -->
+        <section class="gallery-section reveal">
+            <div class="container">
+                <h2 class="section-title">Nuestros Momentos</h2>
+                <div class="gallery-grid">
+                    <div class="polaroid" onclick="openLightbox('IMG-20260215-WA0004.jpg')">
+                        <div class="polaroid-img-wrapper">
+                            <img src="IMG-20260215-WA0004.jpg" alt="Momento 1">
+                        </div>
+                        <p class="polaroid-phrase">Tu sonrisa ilumina todo.</p>
+                    </div>
+                    <div class="polaroid" onclick="openLightbox('IMG-20260531-WA0005.jpg')">
+                        <div class="polaroid-img-wrapper">
+                            <img src="IMG-20260531-WA0005.jpg" alt="Momento 2">
+                        </div>
+                        <p class="polaroid-phrase">El mundo es mejor contigo.</p>
+                    </div>
+                    <div class="polaroid" onclick="openLightbox('IMG-20260517-WA0001.jpg')">
+                        <div class="polaroid-img-wrapper">
+                            <img src="IMG-20260517-WA0001.jpg" alt="Momento 3">
+                        </div>
+                        <p class="polaroid-phrase">Mi lugar favorito en el universo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RAZONES POR LAS QUE TE AMO -->
+        <section class="reasons-section reveal">
+            <div class="container">
+                <h2 class="section-title">Razones por las que te amo</h2>
+                <div class="reasons-grid" id="reasonsGrid">
+                    <!-- Las 12 tarjetas se inyectan dinámicamente mediante JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FRASES ALEATORIAS ANIMADAS -->
+        <section class="phrases-section reveal">
+            <div class="container">
+                <div class="phrase-container">
+                    <div class="phrase-box" id="phraseBox">Cargando pensamientos de amor...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LÍNEA DEL TIEMPO -->
+        <section class="timeline-section reveal">
+            <div class="container">
+                <h2 class="section-title">Nuestra Historia</h2>
+                <div class="timeline-container" id="timelineContainer">
+                    <!-- Se renderiza mediante configuración JS editable -->
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTAS DE PENSAMIENTOS -->
+        <section class="notes-section reveal">
+            <div class="container">
+                <div class="glass-card notes-wrapper">
+                    <h2 class="section-title" style="margin-bottom: 20px;">Tus Pensamientos</h2>
+                    <p style="text-align: center; margin-bottom: 25px; font-size: 0.9rem; opacity: 0.8;">Un espacio privado para que dejes notas de lo que sientas hoy, Mishel.</p>
+                    
+                    <div class="note-input-group">
+                        <input type="text" id="noteInput" class="note-input" placeholder="Escribe un pensamiento aquí...">
+                        <button id="saveNoteBtn" class="btn-action">Guardar</button>
+                    </div>
+                    <div class="notes-list" id="notesList"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN FINAL: LA CARTA -->
+        <section class="final-letter-section reveal">
+            <div class="container">
+                <div class="letter-paper">
+                    <div class="letter-content">
+                        Mi bonita Mishel,
+
+                        Escribir esto para ti es solo una pequeña forma de plasmar lo inmenso que es lo que causas en mí. Desde que entraste a mi vida, cada detalle tomó un color diferente, mucho más brillante y cálido. Gracias por ser esa mujer increíble, fuerte, llena de magia y ternura que me inspira cada día.
+
+                        Esta página es un refugio eterno para los dos, para recordarte siempre, sin importar la hora o el día, lo hermosa y valiosa que eres.
+                    </div>
+                    <div class="letter-signature">
+                        Con todo mi amor,<br>
+                        <strong>Aldair ❤️</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <p>Hecho exclusivamente para la mujer más bonita del universo.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="Vista ampliada">
+    </div>
+
+    <!-- REPRODUCTOR DE MÚSICA FLOTANTE PREMIUM -->
+    <div class="music-player-widget" id="musicWidget">
+        <button class="music-btn" id="musicToggleBtn">▶</button>
+        <div class="track-info">Nuestra Canción</div>
+        <div class="volume-control">
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.05" value="0.5">
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT DE CONTROL Y ANIMACIONES
+         ========================================== -->
+    <script>
+        /* ==========================================================================
+           CONFIGURACIÓN DEL ARREGLO DE TIEMPO INICIAL (Fácil de modificar)
+           ========================================================================== */
+        // Formato exacto: Año, Mes (0-11), Día, Horas, Minutos
+        // Ejemplo: 6 meses y 13 días atrás desde la fecha actual para coincidir con la solicitud exacta.
+        const START_DATE = new Date(2026, 0, 4, 13, 30, 0); // Modifica según tu fecha exacta real
+
+        // Listado de 12 razones
+        const REASONS = [
+            "Por la forma tan hermosa en la que me miras.",
+            "Porque tu sonrisa es capaz de sanar cualquier día gris.",
+            "Por tu inteligencia y la madurez con la que afrontas todo.",
+            "Porque eres mi apoyo incondicional y mi mejor equipo.",
+            "Por la paz y la seguridad que siento cuando te abrazo.",
+            "Porque haces que los momentos más simples se vuelvan mágicos.",
+            "Por tu nobleza y el gran corazón que tienes.",
+            "Por cómo te preocupas por mí y cuidas de lo nuestro.",
+            "Porque eres auténtica, divertida y única.",
+            "Por la complicidad que compartimos y nuestras risas.",
+            "Porque inspiras a ser la mejor versión de mí mismo.",
+            "Simplemente por ser tú, la mujer de mi vida."
+        ];
+
+        // Configuración de la línea del tiempo (Fácil adición/edición)
+        const TIMELINE_DATA = [
+            { date: "Día Uno", title: "Primer mensaje", desc: "El instante exacto en el que esta bonita historia comenzó a escribirse con un saludo." },
+            { date: "Gran Día", title: "Primera salida", desc: "Los nervios a flor de piel, las risas en persona y el inicio de una complicidad real." },
+            { date: "Momento Cálido", title: "Primer abrazo", desc: "Cuando el tiempo pareció detenerse y supimos que este era nuestro lugar seguro." },
+            { date: "Inolvidable", title: "Primer beso", desc: "El instante dulce en el que confirmamos todo lo que nuestros corazones ya sentían." },
+            { date: "Sincero", title: "Primer \"te amo\"", desc: "Las palabras más puras pronunciadas desde el fondo del alma con total certeza." }
+        ];
+
+        // Pool de más de 50 frases románticas
+        const ROMANTIC_PHRASES = [
+            "Eres el pensamiento más bonito de mis días.", "Contigo todo es magia.", "Tu amor es mi refugio favorito.",
+            "Eres suficiente, hermosa e inteligente.", "Mi lugar favorito en el mundo es a tu lado.", "Te amo más de lo que las palabras pueden explicar.",
+            "Gracias por existir y por coincidir conmigo.", "Eres mi presente y el futuro que deseo.", "Cada segundo contigo vale una eternidad.",
+            "Eres la casualidad más hermosa de mi vida.", "Amo cada detalle de ti.", "Tu felicidad es mi mayor alegría.",
+            "Eres mi hogar.", "Donde estés, ahí quiero estar yo.", "Tu amor me hace fuerte.",
+            "Eres la dueña de mis sonrisas.", "Te elegiría mil veces más.", "Nuestra historia es mi favorita.",
+            "Eres el tesoro más grande de mi universo.", "Contigo encontré todo lo que buscaba.", "Tu ternura me desarma.",
+            "Eres mi sol en días nublados.", "Cada día te amo un poco más.", "Eres la pieza que completó mi rompecabezas.",
+            "Amo la forma en que iluminas mi vida.", "Estar contigo es como vivir en un sueño perfecto.", "Tu risa es mi melodía favorita.",
+            "Eres simplemente espectacular.", "Nunca olvides lo valiosa que eres.", "Tienes el corazón más hermoso.",
+            "Eres mi musa, mi amor y mi vida.", "Haces que todo tenga sentido.", "Eres el amor hecho persona.",
+            "Mi felicidad tiene tu nombre escrito.", "Te amo por cómo eres y por cómo soy cuando estoy contigo.", "Eres mi paz.",
+            "Un segundo a tu lado me llena el alma.", "Tu amor es el regalo más hermoso.", "Eres todo lo que está bien en este mundo.",
+            "Amo compartir la vida contigo.", "Eres mi inspiración constante.", "Tus abrazos reinician mi mundo.",
+            "Eres la mujer más increíble de todas.", "Mi amor por ti no tiene límites.", "Eres mi bendición diaria.",
+            "Haces que mi corazón lata con fuerza.", "Eres el reflejo de la perfección para mí.", "Amo nuestro camino juntos.",
+            "Juntos somos el mejor equipo.", "Eres mi principio y mi fin.", "Te amo con toda mi alma, Mishel."
+        ];
+
+        /* ==========================================================================
+           INICIALIZACIÓN Y CONTROL DE PANTALLA DE BIENVENIDA
+           ========================================================================== */
+        const envelope = document.getElementById('envelope');
+        const btnOpen = document.getElementById('btnOpen');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const mainContent = document.getElementById('main-content');
+        const audio = document.getElementById('romantic-audio');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+
+        envelope.addEventListener('click', () => {
+            if(!envelope.classList.contains('open')) {
+                envelope.classList.add('open');
+                
+                // Pequeño sintetizador de audio nativo para efecto de apertura premium
+                playNotificationSound();
+
+                // Reproducir música principal de fondo si el archivo está configurado
+                audio.play().then(() => {
+                    musicToggleBtn.textContent = "║";
+                }).catch(e => console.log("Audio en espera de interacción directa."));
+
+                setTimeout(() => {
+                    welcomeScreen.style.opacity = '0';
+                    mainContent.style.display = 'block';
+                    document.body.classList.remove('locked');
+                    setTimeout(() => {
+                        mainContent.style.opacity = '1';
+                        initScrollReveal();
+                    }, 50);
+                    setTimeout(() => {
+                        welcomeScreen.style.display = 'none';
+                    }, 1000);
+                }, 900);
+            }
+        });
+
+        function playNotificationSound() {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+            osc.frequency.exponentialRampToValueAtTime(783.99, ctx.currentTime + 0.3); // G5
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.4);
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* ==========================================================================
+           MOTOR DEL CONTADOR TEMPORAL PRECISO
+           ========================================================================== */
+        function updateTimelineCounter() {
+            const now = new Date();
+            let diff = now - START_DATE;
+
+            // Cálculos precisos de desgloses de tiempo
+            const msPerSecond = 1000;
+            const msPerMinute = 60 * msPerSecond;
+            const msPerHour = 60 * msPerMinute;
+            const msPerDay = 24 * msPerHour;
+
+            // Estimación de meses aproximados para la visualización fluida
+            const months = Math.floor(diff / (30.436875 * msPerDay));
+            diff -= months * (30.436875 * msPerDay);
+
+            const days = Math.floor(diff / msPerDay);
+            diff -= days * msPerDay;
+
+            const hours = Math.floor(diff / msPerHour);
+            diff -= hours * msPerHour;
+
+            const minutes = Math.floor(diff / msPerMinute);
+            diff -= minutes * msPerMinute;
+
+            const seconds = Math.floor(diff / msPerSecond);
+
+            document.getElementById('calc-months').textContent = months;
+            document.getElementById('calc-days').textContent = days;
+            document.getElementById('calc-hours').textContent = hours;
+            document.getElementById('calc-minutes').textContent = minutes;
+            document.getElementById('calc-seconds').textContent = seconds;
+        }
+        setInterval(updateTimelineCounter, 1000);
+        updateTimelineCounter();
+
+        /* ==========================================================================
+           RENDER DE TARJETAS 3D DE RAZONES
+           ========================================================================== */
+        const reasonsGrid = document.getElementById('reasonsGrid');
+        REASONS.forEach((reason, index) => {
+            const card = document.createElement('div');
+            card.className = 'flip-card';
+            card.innerHTML = `
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <span class="number">#${index + 1}</span>
+                        <p style="font-weight: 500; font-size: 0.95rem;">Razón por la que te amo</p>
+                        <span class="tap-hint">Tocar para leer</span>
+                    </div>
+                    <div class="card-back">
+                        <p>${reason}</p>
+                    </div>
+                </div>
+            `;
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
+            reasonsGrid.appendChild(card);
+        });
+
+        /* ==========================================================================
+           RENDER DE LA LÍNEA DEL TIEMPO (TIMELINE)
+           ========================================================================== */
+        const timelineContainer = document.getElementById('timelineContainer');
+        TIMELINE_DATA.forEach((item, index) => {
+            const side = index % 2 === 0 ? 'left' : 'right';
+            const el = document.createElement('div');
+            el.className = `timeline-item ${side}`;
+            el.innerHTML = `
+                <div class="timeline-card">
+                    <span class="timeline-date">${item.date}</span>
+                    <h4>${item.title}</h4>
+                    <p>${item.desc}</p>
+                </div>
+            `;
+            timelineContainer.appendChild(el);
+        });
+
+        /* ==========================================================================
+           CARRUSEL SISTÉMICO DE FRASES ALEATORIAS (15 Segundos)
+           ========================================================================== */
+        const phraseBox = document.getElementById('phraseBox');
+        function changePhrase() {
+            phraseBox.classList.remove('visible');
+            setTimeout(() => {
+                const index = Math.floor(Math.random() * ROMANTIC_PHRASES.length);
+                phraseBox.textContent = ROMANTIC_PHRASES[index];
+                phraseBox.classList.add('visible');
+            }, 600);
+        }
+        setInterval(changePhrase, 15000);
+        changePhrase(); // Carga inicial rápida
+
+        /* ==========================================================================
+           MÓDULO DE NOTAS INTERACTIVAS CON LOCALSTORAGE
+           ========================================================================== */
+        const noteInput = document.getElementById('noteInput');
+        const saveNoteBtn = document.getElementById('saveNoteBtn');
+        const notesList = document.getElementById('notesList');
+        let editTargetId = null;
+
+        function getNotes() {
+            return JSON.parse(localStorage.getItem('mishel_notes')) || [];
+        }
+
+        function saveNotes(notes) {
+            localStorage.setItem('mishel_notes', JSON.stringify(notes));
+        }
+
+        function renderNotes() {
+            notesList.innerHTML = '';
+            const notes = getNotes();
+            notes.forEach(note => {
+                const div = document.createElement('div');
+                div.className = 'note-item';
+                div.innerHTML = `
+                    <span class="note-text">${escapeHTML(note.text)}</span>
+                    <div class="note-buttons">
+                        <button class="btn-inline btn-edit" onclick="editNote(${note.id})">Editar</button>
+                        <button class="btn-inline btn-delete" onclick="deleteNote(${note.id})">Eliminar</button>
+                    </div>
+                `;
+                notesList.appendChild(div);
+            });
+        }
+
+        saveNoteBtn.addEventListener('click', () => {
+            const text = noteInput.value.trim();
+            if(!text) return;
+
+            let notes = getNotes();
+
+            if(editTargetId !== null) {
+                notes = notes.map(n => n.id === editTargetId ? { ...n, text } : n);
+                editTargetId = null;
+                saveNoteBtn.textContent = 'Guardar';
+            } else {
+                notes.push({ id: Date.now(), text });
+            }
+
+            saveNotes(notes);
+            noteInput.value = '';
+            renderNotes();
+        });
+
+        window.editNote = function(id) {
+            const notes = getNotes();
+            const target = notes.find(n => n.id === id);
+            if(target) {
+                noteInput.value = target.text;
+                editTargetId = id;
+                saveNoteBtn.textContent = 'Actualizar';
+                noteInput.focus();
+            }
+        };
+
+        window.deleteNote = function(id) {
+            let notes = getNotes();
+            notes = notes.filter(n => n.id !== id);
+            saveNotes(notes);
+            renderNotes();
+        };
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
+        }
+        renderNotes();
+
+        /* ==========================================================================
+           LIGHTBOX PARA FOTOGRAFÍAS POLAROID
+           ========================================================================== */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        window.openLightbox = function(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        };
+
+        window.closeLightbox = function() {
+            lightbox.classList.remove('active');
+        };
+
+        /* ==========================================================================
+           REPRODUCTOR WIDGET DE MÚSICA FLOTANTE
+           ========================================================================== */
+        const volumeSlider = document.getElementById('volumeSlider');
+        audio.volume = 0.5;
+
+        musicToggleBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicToggleBtn.textContent = "║";
+            } else {
+                audio.pause();
+                musicToggleBtn.textContent = "▶";
+            }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+        });
+
+        /* ==========================================================================
+           EFECTOS VISUALES: SISTEMA DE ESCARCHA Y CORAZONES AMBIENTALES (Canvas Nativos)
+           ========================================================================== */
+        const ambientCanvas = document.getElementById('ambient-canvas');
+        const aCtx = ambientCanvas.getContext('2d');
+        const clickCanvas = document.getElementById('click-canvas');
+        const cCtx = clickCanvas.getContext('2d');
+
+        let particles = [];
+        let sparks = [];
+
+        function resizeCanvases() {
+            ambientCanvas.width = window.innerWidth;
+            ambientCanvas.height = window.innerHeight;
+            clickCanvas.width = window.innerWidth;
+            clickCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvases);
+        resizeCanvases();
+
+        // Estructura de partícula ambiental
+        class AmbientParticle {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * ambientCanvas.height;
+            }
+            reset() {
+                this.x = Math.random() * ambientCanvas.width;
+                this.y = ambientCanvas.height + 20;
+                this.size = Math.random() * 15 + 6;
+                this.speed = Math.random() * 0.6 + 0.3;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.type = Math.random() > 0.4 ? 'heart' : 'sparkle';
+                this.angle = Math.random() * Math.PI * 2;
+                this.spin = Math.random() * 0.02 - 0.01;
+            }
+            update() {
+                this.y -= this.speed;
+                this.angle += this.spin;
+                this.x += Math.sin(this.angle) * 0.2;
+                if (this.y < -20) this.reset();
+            }
+            draw() {
+                aCtx.save();
+                aCtx.globalAlpha = this.opacity;
+                aCtx.translate(this.x, this.y);
+                aCtx.rotate(this.angle);
+                if (this.type === 'heart') {
+                    aCtx.fillStyle = '#ff85a1';
+                    aCtx.beginPath();
+                    aCtx.moveTo(0, 0);
+                    aCtx.bezierCurveTo(-this.size/2, -this.size/2, -this.size, this.size/3, 0, this.size);
+                    aCtx.bezierCurveTo(this.size, this.size/3, this.size/2, -this.size/2, 0, 0);
+                    aCtx.fill();
+                } else {
+                    aCtx.fillStyle = '#ffc2d1';
+                    aCtx.beginPath();
+                    for (let i = 0; i < 4; i++) {
+                        aCtx.lineTo(0, -this.size/2);
+                        aCtx.rotate(Math.PI / 2);
+                    }
+                    aCtx.fill();
+                }
+                aCtx.restore();
+            }
+        }
+
+        // Estructura de chispa al dar clic
+        class ClickSpark {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 12 + 8;
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 3 + 2;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                this.opacity = 1;
+                this.decay = Math.random() * 0.03 + 0.015;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.05; // Leve gravedad descendente
+                this.opacity -= this.decay;
+            }
+            draw() {
+                cCtx.save();
+                cCtx.globalAlpha = this.opacity;
+                cCtx.translate(this.x, this.y);
+                cCtx.fillStyle = '#ff4d6d';
+                cCtx.beginPath();
+                cCtx.moveTo(0, 0);
+                cCtx.bezierCurveTo(-this.size/2, -this.size/2, -this.size, this.size/3, 0, this.size);
+                cCtx.bezierCurveTo(this.size, this.size/3, this.size/2, -this.size/2, 0, 0);
+                cCtx.fill();
+                cCtx.restore();
+            }
+        }
+
+        // Instanciación inicial partículas ambientales
+        for(let i = 0; i < 45; i++) {
+            particles.push(new AmbientParticle());
+        }
+
+        // Captura de clics globales para chispas extras
+        window.addEventListener('click', (e) => {
+            if(welcomeScreen.style.display === 'none') {
+                for (let i = 0; i < 8; i++) {
+                    sparks.push(new ClickSpark(e.clientX, e.clientY));
+                }
+            }
+        });
+
+        // Loop principal del motor de render
+        function mainAnimationLoop() {
+            aCtx.clearRect(0, 0, ambientCanvas.width, ambientCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            cCtx.clearRect(0, 0, clickCanvas.width, clickCanvas.height);
+            for (let i = sparks.length - 1; i >= 0; i--) {
+                sparks[i].update();
+                if (sparks[i].opacity <= 0) {
+                    sparks.splice(i, 1);
+                } else {
+                    sparks[i].draw();
+                }
+            }
+            requestAnimationFrame(mainAnimationLoop);
+        }
+        mainAnimationLoop();
+
+        /* ==========================================================================
+           MÓDULO SCROLL REVEAL OPTIMIZADO (IntersectionObserver)
+           ========================================================================== */
+        function initScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(r => observer.observe(r));
+        }
+    </script>
+</body>
+</html>
